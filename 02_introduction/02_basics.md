@@ -33,6 +33,16 @@ Let's try to understand the output: `fac :: (Eq p, Num p) => p -> p`
   - Receives a `p` and returns a `p`
   - So if `p` is an `Integer` it will return `Integer`
 
+We can see another types too, for example:
+```shell
+ghci> let num = 10
+num :: Num p => p
+ghci> let str = "Hello, World!"
+str :: String
+ghci> let float = 3.14
+float :: Fractional p => p
+```
+
 ### References
 - [Typeclass Constraint - Haskell](https://en.wikibooks.org/wiki/Haskell/Classes_and_types)
 - [Typeclass Constraint - Stackoverflow](https://stackoverflow.com/questions/9142731/what-does-the-symbol-mean-in-haskell)
