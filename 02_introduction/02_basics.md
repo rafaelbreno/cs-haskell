@@ -2,9 +2,14 @@
 
 ### Summary
 1. [Haskell Interpreter](#haskell-interpreter)
+  1. [What is GHCi](#what-is-ghci)
+  2. [Using GHCi](#using-ghci)
+  3. [Loading files into GHCi](#loading-files-into-ghci)
 9. [References](#references)
 
 ### Haskell Interpreter
+
+#### What is GHCi
 Haskell has `ghci`(GHC Interpreter executable), so if you run `ghci` in your terminal you will be presented with the following prompt:
 ```shell
 Loaded package environment from /path/to/.ghc/x86_64-linux-9.0.1/environments/default
@@ -17,6 +22,7 @@ So, in you terminal run:
 ghci> :set +t
 ```
 
+#### Using GHCi
 To start, let's define a factorial function
 ```shell
 ghci> let fac n = if n == 0 then 1 else n * fac(n-1)
@@ -41,6 +47,33 @@ ghci> let str = "Hello, World!"
 str :: String
 ghci> let float = 3.14
 float :: Fractional p => p
+```
+
+#### Loading Files into GHCi
+Let's create the following [file](./sample.hs)
+```haskell
+-- sample.hs
+fac n = 
+  if n == 0 then
+    1
+  else
+    n * fac(n-1)
+```
+
+If in a project we want to test one function from a file, you may want to run it using the `ghci`, so after creating the `sample.hs` file, run the `ghci`, and let's try to call the `fac` function
+```shell
+ghci> fac 4
+
+<interactive>:1:1: error: Variable not in scope: fac :: t0 -> t
+```
+
+Well, it didn't work, why? Because we didn't imported it, so let's import the file using`ghci> :load sample.hs`
+```shell
+ghci> :load sample.hs 
+[1 of 1] Compiling Main             ( sample.hs, interpreted )
+Ok, one module loaded.
+ghci> fac 4
+24
 ```
 
 ### References
