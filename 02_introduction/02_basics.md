@@ -9,6 +9,9 @@
   1. [Using GHC](#using-ghc)
   2. [Stack](#stack)
 3. [Haskell Main](#haskell-main)
+4. [Expressions](#expressions)
+  1. [Primitive Types](#primitive-types)
+  2. [Operators](#operators)
 9. [References](#references)
 
 ### Haskell Interpreter
@@ -131,6 +134,35 @@ module Main where
 main = putStrLn "Start application"
 ```
 
+### Expressions
+[_"programs in functional languages are primarily built out of expressions"_](https://cs3110.github.io/textbook/chapters/basics/expressions.html#:~:text=programs%20in%20functional%20languages%20are%20primarily%20built%20out%20of%20expressions), Haskell has a definition of [expressions in the language](https://www.haskell.org/onlinereport/haskell2010/haskellch3.html). 
+
+#### Primitive Types
+_In Haskell all data-types start with capital letter!_
+|Type   |Example                                    |
+|-------|-------------------------------------------|
+|Int    |`1`,`2`,`-3`                               |
+|Float  |`1.0`, `3.14`, `-27.64`                    |
+|Bool   |`True` or `False`                          |
+|Char   |`'a'`, `'b'`, `'\t'`                       |
+|String |List of `Char`(`[Char]`), `"foo"`, `"bar"` |
+
+In Haskell we've [Lists, not Arrays](https://www.vacationlabs.com/haskell/basic-types-and-functions.html#lists-not-arrays), `Lists` only accepts values of the same type.
+
+#### Operators
+
+##### Basic
+|Name         |Operators                                                 |
+|-------------|----------------------------------------------------------|
+|Arithmetic   |`+`, `-`, `*`, `/`                                        |
+|Boolean      |`&&`, `||`, `==`, `/=`(different), `not`(boolean negation)|
+|List Concat  |`++`                                                      |
+|String Concat|`++`, remember, a `String` is a List of Char: `[Char]`    |
+
+#### Not Basic
+- `TODO:`
+  - Add some operators here
+
 ### References
 - [Typeclass Constraint - Haskell](https://en.wikibooks.org/wiki/Haskell/Classes_and_types)
 - [Typeclass Constraint - Stackoverflow](https://stackoverflow.com/questions/9142731/what-does-the-symbol-mean-in-haskell)
@@ -138,3 +170,8 @@ main = putStrLn "Start application"
 - [Num](https://hackage.haskell.org/package/base-4.16.0.0/docs/GHC-Num.html)
 - [Stack](https://docs.haskellstack.org/en/stable/README/)
 - [Haskell Main](https://typeclasses.com/beginner-crash-course/main)
+- [Expressions](https://www.haskell.org/onlinereport/haskell2010/haskellch3.html)
+- [Primitive Data Types](https://www.vacationlabs.com/haskell/basic-types-and-functions.html)
+- [Data.Primitive.Types](https://hackage.haskell.org/package/primitive-0.7.3.0/docs/Data-Primitive-Types.html)
+- [Operator](https://imada.sdu.dk/~rolf/Edu/DM22/F06/haskell-operatorer.pdf)
+- [Operators - FP Complete](https://www.fpcomplete.com/haskell/tutorial/operators/)
