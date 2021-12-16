@@ -6,6 +6,8 @@
   2. [Using GHCi](#using-ghci)
   3. [Loading files into GHCi](#loading-files-into-ghci)
 2. [Compiling Haskell Programs](#compiling-haskell-programs)
+  1. [Using GHC](#using-ghc)
+  2. [Stack](#stack)
 9. [References](#references)
 
 ### Haskell Interpreter
@@ -78,6 +80,8 @@ ghci> fac 4
 ```
 
 ### Compiling Haskell Programs
+
+#### Using GHC
 Let's first create a simple Haskell program
 ```haskell
 -- sample02.hs
@@ -94,9 +98,30 @@ fac n = n * fac (n-1)
 Now with this little program we can compile and run it with:
 ```shell
 $ ghc -o sample02 sample02.hs
-$ ./sample02.hs
+$ ./sample02
 24
 ```
+
+The compiling process will generate other 2 files `*.h1` and `*.o` that can be deleted after the compiling.
+
+#### Stack
+_"[Stack](https://docs.haskellstack.org/en/stable/README/) is a cross-platform program for developing Haskell projects. It is aimed at Haskellers both new and experienced."_
+So to start a simple example, create a folder(in this case you can find a folder called `sample-stack/`) with:
+> $ stack new sample-stack
+This will generate a default stack project structure, then to run it you can do this:
+```shell
+$ stack new sample-stack
+$ cd sample-stack/
+$ stack run
+someFunc
+```
+
+Or you can build it into a binary file with:
+```shell
+$ stack build
+$ stack exec sample-stack-exe
+```
+
 
 ### References
 - [Typeclass Constraint - Haskell](https://en.wikibooks.org/wiki/Haskell/Classes_and_types)
