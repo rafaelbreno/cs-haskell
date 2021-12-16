@@ -5,6 +5,7 @@
   1. [What is GHCi](#what-is-ghci)
   2. [Using GHCi](#using-ghci)
   3. [Loading files into GHCi](#loading-files-into-ghci)
+2. [Compiling Haskell Programs](#compiling-haskell-programs)
 9. [References](#references)
 
 ### Haskell Interpreter
@@ -73,6 +74,27 @@ ghci> :load sample.hs
 [1 of 1] Compiling Main             ( sample.hs, interpreted )
 Ok, one module loaded.
 ghci> fac 4
+24
+```
+
+### Compiling Haskell Programs
+Let's first create a simple Haskell program
+```haskell
+-- sample02.hs
+module Main
+  where
+
+main = print (fac 4)
+
+-- Just using some pattern matching
+fac 0 = 1
+fac n = n * fac (n-1)
+```
+
+Now with this little program we can compile and run it with:
+```shell
+$ ghc -o sample02 sample02.hs
+$ ./sample02.hs
 24
 ```
 
