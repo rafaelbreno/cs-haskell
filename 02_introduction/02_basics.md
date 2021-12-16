@@ -13,6 +13,7 @@
   1. [Primitive Types](#primitive-types)
   2. [Operators](#operators)
 5. [If Expressions](#if-expressions)
+6. [Scope](#Scope)
 9. [References](#references)
 
 ### Haskell Interpreter
@@ -178,6 +179,22 @@ checkNumber y =
     "odd"
 ```
 
+### Scope
+Scope can be defined as an area where something can be accessible
+
+```haskell
+-- `value` isn't accessible here
+sum2 x y = (x + y + value + otherValue) -- we can refer to `value` here, and access `otherValue`
+  where 
+    two = 2 -- defining `value`
+
+-- Defining `otherValue`
+otherValue = 10
+
+-- This won't work:
+addValue x = x + value -- won't work because value isn't in this scope
+```
+
 ### References
 - [Typeclass Constraint - Haskell](https://en.wikibooks.org/wiki/Haskell/Classes_and_types)
 - [Typeclass Constraint - Stackoverflow](https://stackoverflow.com/questions/9142731/what-does-the-symbol-mean-in-haskell)
@@ -190,3 +207,4 @@ checkNumber y =
 - [Data.Primitive.Types](https://hackage.haskell.org/package/primitive-0.7.3.0/docs/Data-Primitive-Types.html)
 - [Operator](https://imada.sdu.dk/~rolf/Edu/DM22/F06/haskell-operatorer.pdf)
 - [Operators - FP Complete](https://www.fpcomplete.com/haskell/tutorial/operators/)
+- [Where vs Let](https://wiki.haskell.org/Let_vs._Where)
