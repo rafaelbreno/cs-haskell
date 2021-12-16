@@ -12,6 +12,7 @@
 4. [Expressions](#expressions)
   1. [Primitive Types](#primitive-types)
   2. [Operators](#operators)
+5. [If Expressions](#if-expressions)
 9. [References](#references)
 
 ### Haskell Interpreter
@@ -162,6 +163,20 @@ In Haskell we've [Lists, not Arrays](https://www.vacationlabs.com/haskell/basic-
 #### Not Basic
 - `TODO:`
   - Add some operators here
+
+### If Expressions
+_"`if-then-else` in Haskell works very similar to other languages. For example, here’s a function to return `"odd" / "even"` depending upon the input number:"_
+
+```haskell
+module Throwaway where
+
+checkNumber :: Int -> String -- you can ignore this for now
+checkNumber y =
+  if (mod y 2) == 0 then 
+    "even"
+  else 
+    "odd"
+```
 
 ### References
 - [Typeclass Constraint - Haskell](https://en.wikibooks.org/wiki/Haskell/Classes_and_types)
