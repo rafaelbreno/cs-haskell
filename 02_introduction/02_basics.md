@@ -8,6 +8,7 @@
 2. [Compiling Haskell Programs](#compiling-haskell-programs)
   1. [Using GHC](#using-ghc)
   2. [Stack](#stack)
+3. [Haskell Main](#haskell-main)
 9. [References](#references)
 
 ### Haskell Interpreter
@@ -122,9 +123,18 @@ $ stack build
 $ stack exec sample-stack-exe
 ```
 
+### Haskell Main
+_"A Haskell program needs to have an \"entry point\" called `main`."_
+```haskell
+module Main where
+
+main = putStrLn "Start application"
+```
 
 ### References
 - [Typeclass Constraint - Haskell](https://en.wikibooks.org/wiki/Haskell/Classes_and_types)
 - [Typeclass Constraint - Stackoverflow](https://stackoverflow.com/questions/9142731/what-does-the-symbol-mean-in-haskell)
 - [Eq](https://hackage.haskell.org/package/base-4.16.0.0/docs/Data-Eq.html)
 - [Num](https://hackage.haskell.org/package/base-4.16.0.0/docs/GHC-Num.html)
+- [Stack](https://docs.haskellstack.org/en/stable/README/)
+- [Haskell Main](https://typeclasses.com/beginner-crash-course/main)
