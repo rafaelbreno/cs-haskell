@@ -14,6 +14,8 @@
   2. [Operators](#operators)
 5. [If Expressions](#if-expressions)
 6. [Scope](#Scope)
+7. [Where vs Let](#where-vs-let)
+  1. [Example Where vs Let](#example-where-vs-let)
 9. [References](#references)
 
 ### Haskell Interpreter
@@ -195,6 +197,30 @@ otherValue = 10
 addValue x = x + value -- won't work because value isn't in this scope
 ```
 
+### Where vs Let
+- `let ... in ...` is an expression, that is, it can be written wherever expressions are allowed. 
+- `where` is bound to a surrounding syntactic construct, like the _pattern matching_ line of a function definition.
+
+#### Example Where vs Let
+```haskell
+fibWhere = (map fib' [0 ..] !!)
+  where
+    fib' 0 = 0
+    fib' 1 = 1
+    fib' n = fib (n - 1) + fib (n - 2)
+
+fibLet = 
+  let fib' 0 = 0
+      fib' 1 = 1
+      fib' n = fib (n - 1) + fib (n - 2)
+  in (map fib' [0 ..] !!)
+```
+
+You can run the `where vs let` example with:
+```shell
+$ ghc -o where_let where_let.hs
+$ ./where_let
+```
 ### References
 - [Typeclass Constraint - Haskell](https://en.wikibooks.org/wiki/Haskell/Classes_and_types)
 - [Typeclass Constraint - Stackoverflow](https://stackoverflow.com/questions/9142731/what-does-the-symbol-mean-in-haskell)
@@ -208,3 +234,5 @@ addValue x = x + value -- won't work because value isn't in this scope
 - [Operator](https://imada.sdu.dk/~rolf/Edu/DM22/F06/haskell-operatorer.pdf)
 - [Operators - FP Complete](https://www.fpcomplete.com/haskell/tutorial/operators/)
 - [Where vs Let](https://wiki.haskell.org/Let_vs._Where)
+- [Haskell Type Annotations](https://www.haskell.org/hugs/pages/users_guide/type-annotations.html)
+- [Haskell Type Annotations - Gist](https://gist.github.com/CMCDragonkai/5049f290ce9b51ccd7a9)
