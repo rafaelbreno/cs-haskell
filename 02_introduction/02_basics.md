@@ -221,6 +221,37 @@ You can run the `where vs let` example with:
 $ ghc -o where_let where_let.hs
 $ ./where_let
 ```
+
+### Type Annotations
+_"Type annotations in Haskell are written as `term :: type`"_
+So for example, let's add a type annotation for one of the functions that we've written before.
+```haskell
+-- A non typed Factorial function
+-- fac 0 = 1
+-- fac n = n * fac (n-1)
+
+-- fac is our term
+-- Int -> Int is fac's type, meaning:
+-- -- Receive 1 parameter of type Int
+-- -- Return a value of type Int
+fac :: Int -> Int
+fac 0 = 1
+fac n = n * fac (n - 1)
+
+-- sumTwoValues is our Term
+-- Int -> Int -> Int is sumTwoValues's type, meaning:
+-- -- Receive 2 parameters of type Int
+-- -- Return a value of type Int
+sumTwoValues :: Int -> Int -> Int
+sumTwoValues x y = x + y
+```
+
+Run the example with:
+```shell
+$ ghc -o type_annotation type_annotation.hs
+$ ./type_annotation
+```
+
 ### References
 - [Typeclass Constraint - Haskell](https://en.wikibooks.org/wiki/Haskell/Classes_and_types)
 - [Typeclass Constraint - Stackoverflow](https://stackoverflow.com/questions/9142731/what-does-the-symbol-mean-in-haskell)
