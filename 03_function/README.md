@@ -6,6 +6,7 @@ You may have seen some examples with functions in `Introduction` chapter, but no
   1. [Untyped definition](#untyped-definition)
   2. [Typed definition](#typed-definition)
 2. [Anonymous Functions](#anonymous-functions)
+3. [Pipeline](#pipeline)
 9. [References](#references)
 
 ### Definition
@@ -64,6 +65,26 @@ namedAnonymous = \x -> x * x
 Syntax:
 - `\x y ... z -> e`
 
+### Pipeline
+_"This can be done with any two functions, where the argument type of the first is the return type of the second. The newly created function takes what the second function would as a parameter and feeds it through the second function, then the result of the second function through the first function, and returns the result of the first function."_
+So, having +2 functions, we can do something like this:
+- `(f1 . f2 . ... . fn) v`
+- This would run like:
+  - `v1 = fn v`
+  - `v2 = f(n-1) v1`
+  - `...`
+  - `vn = f1 v(n-1)`
+
+```haskell
+main = do
+  print ((powerOf2 . inc) 4)
+
+inc x = x + 1
+
+powerOf2 x = x * x
+```
+
 ### References
 - [Real World Haskell - Functions](http://book.realworldhaskell.org/read/types-and-functions.html)
 - [Anonymous Functions](https://wiki.haskell.org/Anonymous_function)
+- [Function Composition](https://wiki.haskell.org/Function_composition)
