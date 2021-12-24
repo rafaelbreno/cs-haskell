@@ -5,6 +5,7 @@ You may have seen some examples with functions in `Introduction` chapter, but no
 1. [Definition](#definition)
   1. [Untyped definition](#untyped-definition)
   2. [Typed definition](#typed-definition)
+2. [Anonymous Functions](#anonymous-functions)
 9. [References](#references)
 
 ### Definition
@@ -48,5 +49,21 @@ Semantics:
   - `P1 ... PN` received types
   - `R` returned type
 
+### Anonymous Functions
+_"An anonymous function is a function without a name. t is a Lambda abstraction and might look like this: _ `\x -> x + 1`_. (That backslash is Haskell's way of expressing a λ and is supposed to look like a Lambda.)"_
+
+```haskell
+main = do
+  print ((\x -> x + 1) 4)
+  print ((\x y -> x + y) 4 5)
+  print (namedAnonymous 5)
+
+namedAnonymous = \x -> x * x
+```
+
+Syntax:
+- `\x y ... z -> e`
+
 ### References
 - [Real World Haskell - Functions](http://book.realworldhaskell.org/read/types-and-functions.html)
+- [Anonymous Functions](https://wiki.haskell.org/Anonymous_function)
