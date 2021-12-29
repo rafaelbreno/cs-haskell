@@ -7,6 +7,9 @@ You may have seen some examples with functions in `Introduction` chapter, but no
   2. [Typed definition](#typed-definition)
 2. [Anonymous Functions](#anonymous-functions)
 3. [Pipeline](#pipeline)
+4. [Polymorphism](#polymorphism)
+  1. [Parametric](#parametric)
+  2. [Bounded](#bounded)
 9. [References](#references)
 
 ### Definition
@@ -84,7 +87,39 @@ inc x = x + 1
 powerOf2 x = x * x
 ```
 
+
+### Polymorphism
+In Haskell we've two types of polymorphism: `Parametric` and `Bounded`
+
+#### Parametric
+A function is parametrically polyphormic if it behaves uniformly for all types, in at least one of its type parameters.
+For example the `lenght` function, it returns the lenght of a list, no matter what type is stored inside of that list.
+
+```haskell
+length :: [a] -> Int
+```
+
+#### Bounded
+If you have a custom behavior that you want to have for certain types, then you have a _bounded polymorphism_(also known as "ad hoc"), in Haskell we can implement it using _type classes_
+
+```haskell
+-- where polymorphism is indicated by a lower case type variable
+class Foo a where
+  bar :: a -> string
+
+instance Foo Int where
+  bar x = show (x + 1)
+
+instance Foo String where
+  bar x = show (x ++ " hello!")
+
+main = do
+  putStrLn (bar (2::Int))
+  putStrLn (bar "aaaa")
+```
+
 ### References
 - [Real World Haskell - Functions](http://book.realworldhaskell.org/read/types-and-functions.html)
 - [Anonymous Functions](https://wiki.haskell.org/Anonymous_function)
 - [Function Composition](https://wiki.haskell.org/Function_composition)
+- [Haskell Polymorphism](https://stackoverflow.com/questions/12430660/creating-polymorphic-functions-in-haskell)
