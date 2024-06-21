@@ -138,6 +138,24 @@ module Main where
 main = putStrLn "Start application"
 ```
 
+### Comments
+
+#### Single Line Comment
+```haskell
+age = 55   -- age is equal 55
+pi = 3.14  -- pi is equal to 3.14
+-- idk = 7 -- idk is not defined.
+```
+
+#### Multi/Inline Comment
+```haskell
+{-- 
+age = 55   -- age is equal 55
+pi = 3.14  -- pi is equal to 3.14
+-- idk = 7 -- idk is not defined.
+--}
+```
+
 ### Expressions
 [_"programs in functional languages are primarily built out of expressions"_](https://cs3110.github.io/textbook/chapters/basics/expressions.html#:~:text=programs%20in%20functional%20languages%20are%20primarily%20built%20out%20of%20expressions), Haskell has a definition of [expressions in the language](https://www.haskell.org/onlinereport/haskell2010/haskellch3.html). 
 
@@ -152,6 +170,11 @@ _In Haskell all data-types start with capital letter!_
 |String |List of `Char`(`[Char]`), `"foo"`, `"bar"` |
 
 In Haskell we've [Lists, not Arrays](https://www.vacationlabs.com/haskell/basic-types-and-functions.html#lists-not-arrays), `Lists` only accepts values of the same type.
+Internally, Lists (`[a]`) are _linked lists_, making index-based lookups really slow, and _prepending_ elements really fast.
+<!--  
+TODO: Add a link to somewhere showing that `List` is in fact _linked list_.
+TODO: Add a link to a chapter using Data.Vector
+-->
 
 #### Operators
 
@@ -163,11 +186,22 @@ In Haskell we've [Lists, not Arrays](https://www.vacationlabs.com/haskell/basic-
 |List Concat  |`++`                                                      |
 |String Concat|`++`, remember, a `String` is a List of Char: `[Char]`    |
 
-#### Not Basic
-- `TODO:`
-  - Add some operators here
+Note: These operators are called _infix operator_, _"[...]Haskell allows two-argument functions to be written as infix operators placed between their arguments [...]"_
+```haskell 
+2 == 2   -- this
+(==) 2 2 -- is equal to this
+```
 
-### If Expressions
+#### Not Basic
+
+|Name                  | Operator | Signature                       | Example                                 |
+|----------------------|----------|---------------------------------|-----------------------------------------|
+| Function operator    | `$`      | `(a -> b) -> a -> b`            | `f ( g ( h ( x ) ) )` = `f $ g $ h $ x` |
+| Function composition | `.`      | `(b -> c) -> (a -> b) -> a -> ` | `(chr . (+1) . ord) 'A'`                |
+
+[Examples by HaskellCats](https://github.com/haskellcats/haskell-operators/blob/master/examples.md)
+
+#### If Else
 _"`if-then-else` in Haskell works very similar to other languages. For example, here’s a function to return `"odd" / "even"` depending upon the input number:"_
 
 ```haskell
@@ -181,9 +215,10 @@ checkNumber y =
     "odd"
 ```
 
-### Scope
+#### Scope
 Scope can be defined as an area where something can be accessible
 
+##### Where
 ```haskell
 -- `value` isn't accessible here
 sum2 x y = (x + y + value + otherValue) -- we can refer to `value` here, and access `otherValue`
@@ -197,11 +232,11 @@ otherValue = 10
 addValue x = x + value -- won't work because value isn't in this scope
 ```
 
-### Where vs Let
+#### Where vs Let
 - `let ... in ...` is an expression, that is, it can be written wherever expressions are allowed. 
 - `where` is bound to a surrounding syntactic construct, like the _pattern matching_ line of a function definition.
 
-#### Example Where vs Let
+Example:
 ```haskell
 fibWhere = (map fib' [0 ..] !!)
   where
@@ -220,6 +255,29 @@ You can run the `where vs let` example with:
 ```shell
 $ ghc -o where_let where_let.hs
 $ ./where_let
+```
+
+#### Guards
+Haskell syntax allows us to use _boolean operators_ to write simpler functions, for example 
+
+```haskell
+fib :: Int -> Int
+fib n 
+    | n < 0     = error "negative number not allowed"
+    | n < 2     = n
+    | otherwise = fib ( n - 1 ) + fib ( n - 2 )
+```
+
+The `otherwise` will only be reached if none of the other options are `True`
+
+##### Guards with Where
+```haskell
+fib :: Int -> Int
+fib n 
+    | check n   = error "negative number not allowed"
+    | check n   = n
+    | otherwise = fib ( n - 1 ) + fib ( n - 2 )
+    where check n = ( n < 0 ) || ( n < 2 ) -- this is overkill, but its an example
 ```
 
 ### Type Annotations
